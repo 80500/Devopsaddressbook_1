@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'M2_HOME'
+    }
+    stages {
+    stage('Checkout'){
+    steps {
+      git 'https://github.com/cbabu85/DevOpsAddressBook.git'
+      }
+      }
+    stage('package'){
+    steps {
+      sh 'mvn package'
+      }
+      }
+     stage('Deployment'){
+    steps {
+      sh 'cp target/addressbook.war /opt/tomcat/webapps/'
+      }
+      }
+      }
+      }
